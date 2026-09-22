@@ -2,12 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Storefront Name</title>
+    <title>Sara's Shirt Shop</title>
+    <link rel="stylesheet" href="SSS.css">
+
+    <a href="cart.html" class="header-cart" aria-label="Shopping Cart">
+
+    <svg class="cart-icon"
+         viewBox="0 0 64 64"
+         aria-hidden="true">
+
+        <path d="M5 8 H13 L19 39 H48 L55 18 H16"
+              fill="none"
+              stroke="black"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+
+        <circle cx="23" cy="51" r="4"
+                fill="none"
+                stroke="black"
+                stroke-width="5" />
+
+        <circle cx="45" cy="51" r="4"
+                fill="none"
+                stroke="black"
+                stroke-width="5" />
+
+    </svg>
+
+    <span id="cart-count" class="cart-count">0</span>
+
+    </a>
 </head>
 
 <body>
     <!-- Created by Sara Fields on 9/17/2026 -->
-    <h1>My Website</h1>
-    <p>This is the beginning of my website project.</p>
+    <header>
+        <h1>Sara's Shirt Shop</h1>
+    </header>
+    <p></p>
+    <main>
+        <section class="product">
+
+            <label for="game">Pick Your Game:</label>
+            <div>
+                <select id="game" onchange="updateShirt()">
+                    <option value="craps">Craps</option>
+                    <option value="blackjack">Blackjack</option>
+                    <option value="poker">Poker</option>
+                    <option value="roulette">Roulette</option>
+                    <option value="slots">Slots</option>
+                </select>
+            </div>
+            
+            <p></p>
+            <p></p>
+
+            <div class="shirt-display">
+
+                <div class="selected-shirt">
+                    <h3>Selected Item</h3>
+
+                    <img id="product-image"
+                        src="images/craps-black.png"
+                        alt="Black Craps T-shirt">
+                </div>
+
+                <div class="shirt-previews" id="shirt-previews">
+                </div>
+
+            </div>
+
+            <div class="product-options">
+                <p>
+                A casino-themed T-shirt featuring a hand throwing two six sided dice.
+                </p>
+        
+                <label for="size">Size</label>
+
+                <select id="size" name="size">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+
+                <br><br>
+
+                <label for="amount">Amount:</label>
+
+                <button type="button" onclick="changeAmount(-1)">-</button>
+                
+                <input type="number"
+                       id="amount"
+                       name="amount"
+                       value="1"
+                       min="1">
+                
+                <button type="button" onclick="changeAmount(+1)">+</button>
+
+                <h3>Color</h3>
+
+                <button class="black" onclick="changeColor('black')">Black</button>
+                <button class="white" onclick="changeColor('white')">White</button>
+                <button class="cream" onclick="changeColor('cream')">Cream</button>
+                <button class="blue" onclick="changeColor('blue')">Blue</button>
+                <button class="green" onclick="changeColor('green')">Green</button>
+                <button class="gold" onclick="changeColor('gold')">Gold</button>
+            </div>
+
+            <p class="price">$20.00 each</p>
+
+            <div class="purchase-buttons">
+                <button type="button"
+                        class="cart-button"
+                        onclick="addToCart()">
+                    Add to Cart
+                </button>
+
+                <button type="button"
+                        class="purchase-button"
+                        onclick="window.location.href='Cart.html'">
+                    Purchase
+                </button>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Sara's Shirt Shop</p>
+
+            <button type="button" onclick="openContact()">Contact Us</button>
+        </footer>
+
+        <div id="contact-box" class="contact-box">
+
+        <form class="contact-form">
+
+            <h2>Contact Us</h2>
+
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name">
+
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="message">Message *</label>
+            <textarea id="message"
+                    name="message"
+                    rows="6"
+                    required></textarea>
+
+            <div class="form-buttons">
+                <button type="submit" class="submit-button">Submit</button>
+
+                <button type="button"
+                        class="cancel-button"
+                        onclick="closeContact()">
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+
+
+<script>
+    const colors = ["black", "white", "cream", "blue", "green", "gold"];
+
+    let selectedColor = "black";
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function addToCart() {
+    const game = document.getElementById("game").value;
+    const size = document.getElementById("size").value;
+    const amount = Number(document.getElementById("amount").value);
+
+    const existingItem = cart.find(function(item) {
+        return item.game === game &&
+               item.color === selectedColor &&
+               item.size === size;
+    });
+
+        if (existingItem) {
+            existingItem.amount = existingItem.amount + amount;
+        } else {
+            const item = {
+                game: game,
+                color: selectedColor,
+                size: size,
+                amount: amount,
+                price: 20
+            };
+
+            cart.push(item);
+        }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+    }
+
+    function updateCartCount() {
+    let totalItems = 0;
+
+    cart.forEach(function(item) {
+        totalItems = totalItems + item.amount;
+    });
+
+    const cartCount = document.getElementById("cart-count");
+
+    cartCount.textContent = totalItems;
+
+    if (totalItems === 0) {
+        cartCount.style.display = "none";
+    } else {
+        cartCount.style.display = "flex";
+    }
+    }
+
+    function changeColor(color) {
+    selectedColor = color;
+    updateShirt();
+    }
+
+    function updateShirt() {
+        const game = document.getElementById("game").value;
+        const productImage = document.getElementById("product-image");
+        const previews = document.getElementById("shirt-previews");
+
+        // Change the large selected image
+        productImage.src = "images/" + game + "-" + selectedColor + ".png";
+        productImage.alt = selectedColor + " " + game + " T-shirt";
+
+        // Clear the old preview images
+        previews.innerHTML = "";
+
+        // Create previews for every OTHER color
+        colors.forEach(function(color) {
+
+            if (color !== selectedColor) {
+                const image = document.createElement("img");
+
+                image.src = "images/" + game + "-" + color + ".png";
+                image.alt = color + " " + game + " T-shirt";
+
+                previews.appendChild(image);
+            }
+        });
+    }
+
+    function changeAmount(change) {
+        const amount = document.getElementById("amount");
+        let newAmount = Number(amount.value) + change;
+
+        if (newAmount >= 1){
+            amount.value = newAmount;
+        }
+    }
+    
+    function openContact() {
+    document.getElementById("contact-box").style.display = "flex";
+    }
+
+    function closeContact() {
+        document.getElementById("contact-box").style.display = "none";
+    }
+
+    updateShirt();
+    updateCartCount();
+</script>
 </body>
 </html>
