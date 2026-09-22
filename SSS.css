@@ -1,0 +1,621 @@
+@charset "utf-8";
+/*
+    Author:Sara Fields
+    Date:9/22/2026
+    Purpose: CSS stylings for my Sara's Shirt Shop project
+*/
+
+/* Style Rules */
+body {
+    background-image: url("images/casino-floor.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: rgba(25, 25, 25, 0.75);
+}
+
+main {
+    margin: auto;
+    width: 80%;
+}
+
+img {
+    max-width: 100%;
+}
+
+.game-selection {
+    text-align: center;
+    margin: 20px;
+}
+
+.product {
+    background-color: black;
+    color: white;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+#amount::-webkit-inner-spin-button,
+#amount::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#amount {
+    width: 30px;
+    height: 25px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.amount-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.amount-control input {
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.amount-control button {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+}
+
+.shirt-display {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+.selected-shirt{
+    flex: 0 0 300px;
+}
+.selected-shirt img{
+   width: 250px;
+   height: auto;
+}
+
+.shirt-previews{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex: 1;
+}
+
+.shirt-previews img {
+    width: calc((100% - 60px) / 5);
+    min-width: 0;
+    height: auto;
+}
+
+.product-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.contact-form {
+    background-color: white;
+    color: black;
+    width: 400px;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    width: 100px;
+    padding: 10px;
+}
+
+.submit-button {
+    background-color: royalblue;
+    color: white;
+}
+
+.cancel-button {
+    background-color: white;
+    color: black;
+}
+
+.contact-box {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.purchase-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-cart {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    background-color: white;
+    border-radius: 8px;
+}
+
+.cart-icon {
+    width: 55px;
+    height: 55px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+
+    background-color: red;
+    color: white;
+
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cart-button,
+.purchase-button {
+    width: 120px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.cart-button {
+    background-color: red;
+    color: white;
+}
+
+.purchase-button {
+    background-color: gold;
+    color: black;
+}
+
+.black {
+    background-color: black;
+    color: white;
+}
+
+.white {
+    background-color: white;
+    color: black;
+}
+
+.cream {
+    background-color: papayawhip;
+    color: black;
+}
+
+.blue {
+    background-color: royalblue;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.gold {
+    background-color: gold;
+    color: black;
+}
+
+/* Cart Page */
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    background-color: white;
+    color: black;
+
+    padding: 15px;
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+}
+
+.cart-item img {
+    width: 150px;
+    height: auto;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.remove-button {
+    background-color: red;
+    color: white;
+    padding: 6px 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.return-button {
+    background-color: royalblue;
+    color: white;
+
+    padding: 10px 20px;
+    margin-bottom: 15px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.checkout-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.checkout-button {
+    background-color: gold;
+    color: black;
+
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cart-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    width: 95%;
+    margin: auto;
+}
+
+.cart {
+    flex: 1;
+}
+
+.order-summary {
+    position: sticky;
+    top: 20px;
+
+    width: 300px;
+
+    background-color: white;
+    color: black;
+
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order-summary h2 {
+    text-align: center;
+}
+
+.order-summary p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-grand-total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Billing Page */
+.summary-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summary-heading a {
+    color: royalblue;
+    text-decoration: underline;
+}
+
+.checkout-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+
+    width: 90%;
+    margin: 30px auto;
+}
+
+.checkout-forms {
+    flex: 1;
+}
+
+.checkout-section {
+    background-color: white;
+    color: black;
+
+    padding: 25px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+}
+
+.checkout-section label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.checkout-section input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.address-row,
+.payment-row,
+.contact-row {
+    display: flex;
+    gap: 15px;
+}
+
+.address-row div,
+.payment-row div,
+.contact-row div {
+    flex: 1;
+}
+
+.checkout-summary {
+    position: sticky;
+    top: 20px;
+
+    width: 300px;
+
+    background-color: white;
+    color: black;
+
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.checkout-summary p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.place-order-button {
+    width: 100%;
+
+    background-color: gold;
+    color: black;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.billing-address {
+    display: none;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 15px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.checkout-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.checkout-item-details strong {
+    text-transform: capitalize;
+}
+
+.checkout-item-details span {
+    font-size: 14px;
+}
+
+.checkout-item-price {
+    font-weight: bold;
+}
+
+.confirmation {
+    width: 70%;
+    max-width: 800px;
+    margin: 30px auto;
+
+    background-color: white;
+    color: black;
+
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.confirmation h2 {
+    text-align: center;
+}
+
+.payment-status {
+    text-align: center;
+    font-weight: bold;
+}
+
+.confirmation-item {
+    display: flex;
+    gap: 15px;
+
+    padding: 15px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.confirmation-item strong {
+    text-transform: capitalize;
+    margin-right: auto;
+}
+
+#confirmation-summary {
+    margin-top: 20px;
+}
+
+#confirmation-summary p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmation-total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Confirmation Page */
+.confirmation {
+    width: 70%;
+    max-width: 800px;
+    margin: 30px auto;
+
+    background-color: white;
+    color: black;
+
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.confirmation h2 {
+    text-align: center;
+}
+
+.payment-status {
+    text-align: center;
+    font-weight: bold;
+}
+
+.confirmation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.confirmation-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.confirmation-item-info strong {
+    text-transform: capitalize;
+}
+
+#confirmation-summary {
+    margin-top: 20px;
+}
+
+#confirmation-summary p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmation-total {
+    font-size: 20px;
+    font-weight: bold;
+}

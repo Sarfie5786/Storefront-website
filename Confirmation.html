@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation | Sara's Shirt Shop</title>
+    <link rel="stylesheet" href="SSS.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Sara's Shirt Shop</h1>
+    </header>
+
+    <main>
+
+        <section class="confirmation">
+
+            <div id="confirmation-message">
+            </div>
+
+            <div id="confirmation-items">
+            </div>
+
+            <div id="confirmation-summary">
+            </div>
+
+            <button type="button"
+                    class="return-button"
+                    onclick="returnToStore()">
+                Return to Store
+            </button>
+
+        </section>
+
+    </main>
+
+<script>
+    const orderPlaced = localStorage.getItem("orderPlaced");
+
+    const completedOrder =
+        JSON.parse(localStorage.getItem("completedOrder"));
+
+    const confirmationMessage =
+        document.getElementById("confirmation-message");
+
+    const confirmationItems =
+        document.getElementById("confirmation-items");
+
+    const confirmationSummary =
+        document.getElementById("confirmation-summary");
+
+    if (orderPlaced === "true" && completedOrder) {
+
+        confirmationMessage.innerHTML = `
+            <h2>Thank You for Your Order!</h2>
+
+            <p>
+                Your order has been successfully placed.
+            </p>
+
+            <p class="payment-status">
+                Payment Received
+            </p>
+        `;
+    
+       completedOrder.items.forEach(function(item) {
+
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "confirmation-item";
+
+            itemDiv.innerHTML = `
+                <div class="confirmation-item-info">
+                    <strong>${item.game}</strong>
+                    <span>Color: ${item.color}</span>
+                    <span>Size: ${item.size}</span>
+                    <span>Quantity: ${item.amount}</span>
+                </div>
+
+                <strong>
+                    $${(item.price * item.amount).toFixed(2)}
+                </strong>
+            `;
+
+            confirmationItems.appendChild(itemDiv);
+        });
+
+     confirmationSummary.innerHTML = `
+            <p>
+                <span>Items:</span>
+                <span>$${completedOrder.itemsTotal.toFixed(2)}</span>
+            </p>
+
+            <p>
+                <span>Tax:</span>
+                <span>$${completedOrder.tax.toFixed(2)}</span>
+            </p>
+
+            <p>
+                <span>Shipping &amp; Handling:</span>
+                <span>$${completedOrder.shipping.toFixed(2)}</span>
+            </p>
+
+            <hr>
+
+            <p class="confirmation-total">
+                <span>Total Paid:</span>
+                <span>$${completedOrder.grandTotal.toFixed(2)}</span>
+            </p>
+        `;
+
+          } else {
+
+            confirmationMessage.innerHTML = `
+                <h2>Order Not Completed</h2>
+
+                <p>
+                    No payment has been received for this order.
+                </p>
+
+                <p>
+                    Please return to the store to complete your purchase.
+                </p>
+            `;
+
+        }
+
+     function returnToStore() {
+
+        localStorage.removeItem("orderPlaced");
+        localStorage.removeItem("completedOrder");
+
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billing | Sara's Shirt Shop</title>
+    <link rel="stylesheet" href="SSS.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Sara's Shirt Shop</h1>
+    </header>
+
+    <main>
+        <div class="checkout-layout">
+
+            <div class="checkout-forms">
+                
+                <form id="checkout-form">
+
+                    <section class="checkout-section">
+                        <h2>Delivery Address</h2>
+
+                        <label for="delivery-street">Street *</label>
+                        <input type="text"
+                            id="delivery-street"
+                            required>
+
+                        <label for="delivery-unit">
+                            Apt/Suite#/Building#
+                        </label>
+                        <input type="text"
+                            id="delivery-unit">
+
+                        <div class="address-row">
+
+                            <div>
+                                <label for="delivery-city">City *</label>
+                                <input type="text"
+                                    id="delivery-city"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="delivery-state">State *</label>
+                                <input type="text"
+                                    id="delivery-state"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="delivery-zip">Zip Code *</label>
+                                <input type="text"
+                                    id="delivery-zip"
+                                    required>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+
+                        <h2>Billing Information</h2>
+
+                        <label class="same-address">
+                            <input type="checkbox"
+                                id="same-address"
+                                checked>
+
+                            <span class="custom-checkbox">X</span>
+
+                            Billing address same as delivery address
+                        </label>
+
+                        <div id="billing-address" class="billing-address">
+
+                            <label for="billing-street">Billing Street *</label>
+                            <input type="text"
+                                id="billing-street">
+
+                            <label for="billing-unit">
+                                Apt/Suite#/Building#
+                            </label>
+                            <input type="text"
+                                id="billing-unit">
+
+                            <div class="address-row">
+
+                                <div>
+                                    <label for="billing-city">City *</label>
+                                    <input type="text"
+                                        id="billing-city">
+                                </div>
+
+                                <div>
+                                    <label for="billing-state">State *</label>
+                                    <input type="text"
+                                        id="billing-state">
+                                </div>
+
+                                <div>
+                                    <label for="billing-address-zip">Zip Code *</label>
+                                    <input type="text"
+                                        id="billing-address-zip">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <label for="card-number">Card Number *</label>
+                        <input type="text"
+                            id="card-number"
+                            required>
+
+                        <div class="payment-row">
+
+                            <div>
+                                <label for="expiration">Expiration Date *</label>
+                                <input type="text"
+                                    id="expiration"
+                                    placeholder="MM/YY"
+                                    maxlength="5"
+                                    inputmode="numeric"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="security-code">Security Code *</label>
+                                <input type="text"
+                                    id="security-code"
+                                    required>
+                            </div>
+
+                        </div>
+
+                        <label for="billing-zip">Zip Code *</label>
+                        <input type="text"
+                            id="billing-zip"
+                            required>
+
+                    </section>
+
+                    <section class="checkout-section">
+
+                        <h2>Contact Information</h2>
+
+                        <div class="contact-row">
+
+                            <div>
+                                <label for="first-name">First Name *</label>
+                                <input type="text"
+                                    id="first-name"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="last-name">Last Name *</label>
+                                <input type="text"
+                                    id="last-name"
+                                    required>
+                            </div>
+
+                        </div>
+
+                        <div class="contact-row">
+
+                            <div>
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email"
+                                    id="contact-email"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="phone-number">Phone Number *</label>
+                                <input type="tel"
+                                    id="phone-number"
+                                    required>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <button type="submit"
+                            class="place-order-button">
+                        Place Order
+                    </button>
+                </form>
+            </div>
+
+            <aside class="checkout-summary">
+
+                <div class="summary-heading">
+                    <h2>In Your Cart</h2>
+
+                    <a href="cart.html">Edit</a>
+                </div>
+
+                <div id="checkout-items">
+                </div>
+
+                <hr>
+
+                <p>
+                    <span>Items (<span id="checkout-item-count">0</span>):</span>
+                    <span id="checkout-items-total">$0.00</span>
+                </p>
+
+                <p>
+                    Tax:
+                    <span id="checkout-tax">$0.00</span>
+                </p>
+
+                <p>
+                    Shipping &amp; Handling:
+                    <span id="checkout-shipping">$0.00</span>
+                </p>
+
+                <hr>
+
+                <p class="checkout-total">
+                    Grand Total:
+                    <span id="checkout-grand-total">$0.00</span>
+                </p>
+
+            </aside>
+
+        </div>
+    </main>
+
+<script>
+    const sameAddress = document.getElementById("same-address");
+    const billingAddress = document.getElementById("billing-address");
+
+    sameAddress.addEventListener("change", function() {
+
+        if (sameAddress.checked) {
+            billingAddress.style.display = "none";
+        } else {
+            billingAddress.style.display = "block";
+        }
+
+    });
+
+    const expiration = document.getElementById("expiration");
+
+    expiration.addEventListener("input", function() {
+
+        let value = expiration.value.replace(/\D/g, "");
+
+        if (value.length > 2) {
+            value = value.slice(0, 2) + "/" + value.slice(2, 4);
+        } else if (value.length === 2) {
+            value = value + "/";
+        }
+
+        expiration.value = value;
+    });
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const checkoutItems = document.getElementById("checkout-items");
+
+    let itemsTotal = 0;
+    let itemCount = 0;
+
+    cart.forEach(function(item) {
+
+        const subtotal = item.price * item.amount;
+
+        itemsTotal = itemsTotal + subtotal;
+        itemCount = itemCount + item.amount;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "checkout-item";
+
+        itemDiv.innerHTML = `
+            <div class="checkout-item-details">
+                <strong>${item.game}</strong>
+                <span>${item.color} • ${item.size}</span>
+                <span>Quantity: ${item.amount}</span>
+            </div>
+
+            <span class="checkout-item-price">
+                $${subtotal.toFixed(2)}
+            </span>
+        `;
+
+        checkoutItems.appendChild(itemDiv);
+    });
+
+    const checkoutForm = document.getElementById("checkout-form");
+
+    checkoutForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const completedOrder = {
+            items: cart,
+            itemsTotal: itemsTotal,
+            tax: tax,
+            shipping: shipping,
+            grandTotal: grandTotal
+        };
+
+        localStorage.setItem(
+            "completedOrder",
+            JSON.stringify(completedOrder)
+        );
+
+        localStorage.setItem("orderPlaced", "true");
+
+        localStorage.removeItem("cart");
+
+        window.location.href = "Confirmation.html";
+    });
+
+    const taxRate = 0.06;
+    const tax = itemsTotal * taxRate;
+    const shipping = itemsTotal > 0 ? 5.00 : 0;
+    const grandTotal = itemsTotal + tax + shipping;
+
+    document.getElementById("checkout-items-total").textContent =
+        "$" + itemsTotal.toFixed(2);
+
+    document.getElementById("checkout-tax").textContent =
+        "$" + tax.toFixed(2);
+
+    document.getElementById("checkout-shipping").textContent =
+        "$" + shipping.toFixed(2);
+
+    document.getElementById("checkout-grand-total").textContent =
+        "$" + grandTotal.toFixed(2);
+
+    document.getElementById("checkout-item-count").textContent =
+    itemCount;
+</script>
+
+</body>
+
+</html>
