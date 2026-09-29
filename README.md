@@ -5,24 +5,17 @@ Website Purpose
 
 This website is being developed as a project for my product development course. Its purpose is to provide users with an organized and easy-to-use website that presents the project's planned content and features.
 
-Planned Feature Roadmap
+This website provides gamblers fun, lucky shirts to win at their favorite games like Craps, Blackjack, Poker, Rhoulette, and Slots.
+Simply open the drop-down menu to pick your game of choice.
 
-Phase 1 - Initial Setup
-  Create the basic website structure
-  Add the home page
-  Establish the initial GitHub repository
+You may buy graphic t-shirts with a game-specific related image in colors black, white, cream, blue, green, and gold.
 
-Phase 2 - Core Features
-  Develop the main website content
-  Add navigation
-  Create the primary features of the website
+If there's a color you would like that isn't an option, please click the Contact Us button at the bottom of the homepage.
 
-Phase 3 - Design and Usability
-  Improve the visual design
-  Make the website responsive
-  Improve usability and accessibility
+Once you've selected what you want, click either the Purchase Button or the Cart at the top right.
 
-Phase 4 - Testing and Launch
-  Test website functionality
-  Fix errors and make improvements
-  Prepare the website for launch
+Confirm that what you've selected is copacetic and click Complete Purchase.
+
+Fill out the proper billing information and place your order.
+
+Enjoy our confirmation page.
