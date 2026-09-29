@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Network Connection Test | Sara's Shirt Shop</title>
+    <link rel="stylesheet" href="SSS.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Sara's Shirt Shop</h1>
+    </header>
+
+    <main>
+
+        <section class="network-test">
+
+            <h2>Network Connection Test</h2>
+
+            <p>
+                <strong>Local Host Name:</strong>
+                <span id="host-name"></span>
+            </p>
+
+            <p>
+                <strong>Current Communication Port:</strong>
+                <span id="port"></span>
+            </p>
+
+            <p>
+                <strong>Current Transmission Protocol:</strong>
+                <span id="protocol"></span>
+            </p>
+
+            <p>
+                <strong>Last Time Launched:</strong>
+                <span id="last-launch"></span>
+            </p>
+
+        </section>
+
+    </main>
+
+<script>
+
+    const hostName = window.location.hostname;
+    const port = window.location.port;
+    const protocol = window.location.protocol;
+
+    document.getElementById("host-name").textContent =
+        hostName;
+
+    document.getElementById("port").textContent =
+        port;
+
+    document.getElementById("protocol").textContent =
+        protocol.replace(":", "").toUpperCase();
+
+    const previousLaunch =
+        localStorage.getItem("networkTestLastLaunch");
+
+    if (previousLaunch) {
+        document.getElementById("last-launch").textContent =
+            previousLaunch;
+    } else {
+        document.getElementById("last-launch").textContent =
+            "First Launch";
+    }
+
+    const currentLaunch = new Date().toLocaleString();
+
+    localStorage.setItem(
+        "networkTestLastLaunch",
+        currentLaunch
+    );
+
+</script>
+
+</body>
+
+</html>
